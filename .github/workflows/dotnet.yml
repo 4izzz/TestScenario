@@ -33,5 +33,6 @@ jobs:
       with:
         test-assembly-path: TestScenario/bin/Release/net6.0
         test-assembly-dll: TestScenario.dll
+        test-execution-json: TestScenario/bin/Release/net6.0/TestExecution.json
         output-html: TestScenario.html
         framework: net6.0
