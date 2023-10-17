@@ -49,13 +49,10 @@ namespace SpecFlowProject1.Hooks
             string stepName = scenarioContext.StepContext.StepInfo.Text;
 
             var driver = _container.Resolve<IWebDriver>();
-            var filename = Path.ChangeExtension(Path.GetRandomFileName(), "png");
+            var filename = Path.Combine("screenshots", Path.ChangeExtension(Path.GetRandomFileName(), "png")); // Save in "screenshots" directory
 
-            var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
-            screenshot.SaveAsFile(filename);
-
-            // Save the screenshot within the archive
-            _specFlowOutputHelper.AddAttachment("screenshots/" + filename, "image/png");
+            ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile(filename);
+            _specFlowOutputHelper.AddAttachment(filename);
         }
     }
 }
