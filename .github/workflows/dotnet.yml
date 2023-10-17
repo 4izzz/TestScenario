@@ -39,4 +39,22 @@ jobs:
         test-assembly-dll: TestScenario.dll
         output-html: TestScenario.html
         framework: net6.0
+    - name: Copy Screenshots
+      run: |
+        mkdir -p screenshots  # Create a directory to store screenshots
+        # Copy your screenshots from the original location to the screenshots directory
+        # Example: cp /path/to/screenshots/*.png screenshots/
+      shell: bash
+  
+    - name: Create Artifacts Archive
+      run: |
+        # Create a zip archive that includes the screenshots
+        zip -r artifacts.zip screenshots
+      shell: bash
+    
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: 'Test Artifacts'
+        path: artifacts.zip
         

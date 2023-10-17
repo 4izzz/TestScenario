@@ -51,8 +51,11 @@ namespace SpecFlowProject1.Hooks
             var driver = _container.Resolve<IWebDriver>();
             var filename = Path.ChangeExtension(Path.GetRandomFileName(), "png");
 
-            ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile(filename);
-            _specFlowOutputHelper.AddAttachment(filename);
+            var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
+            screenshot.SaveAsFile(filename);
+
+            // Save the screenshot within the archive
+            _specFlowOutputHelper.AddAttachment("screenshots/" + filename, "image/png");
         }
     }
 }
