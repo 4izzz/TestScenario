@@ -48,8 +48,12 @@ namespace SpecFlowProject1.Hooks
             string stepType = scenarioContext.StepContext.StepInfo.StepDefinitionType.ToString();
             string stepName = scenarioContext.StepContext.StepInfo.Text;
 
-            var driver = _container.Resolve<IWebDriver>();
-            var filename = Path.Combine("screenshots", Path.ChangeExtension(Path.GetRandomFileName(), "png")); // Save in "screenshots" directory
+            var driver = _container.Resolve<IWebDriver();
+            var directoryPath = "screenshots";  // Directory path
+            var filename = Path.Combine(directoryPath, Path.ChangeExtension(Path.GetRandomFileName(), "png"));
+
+            // Create the directory if it doesn't exist
+            Directory.CreateDirectory(directoryPath);
 
             ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile(filename);
             _specFlowOutputHelper.AddAttachment(filename);
