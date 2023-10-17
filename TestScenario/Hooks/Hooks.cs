@@ -23,7 +23,7 @@ namespace SpecFlowProject1.Hooks
         public void FirstBeforeScenario(ScenarioContext scenarioContext)
         {
             var options = new ChromeOptions();
-            //options.AddArgument("--headless=new");
+            options.AddArgument("--headless=new");
             options.AddArgument("--window-size=1920,1080");
 
             IWebDriver driver = new ChromeDriver(options);

@@ -16,6 +16,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Start Docker Container
+      run: |
+        docker run -d -p 7080:5000 gprestes/the-internet
+      shell: bash
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
@@ -24,5 +28,15 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
+    - name: Wait for the application to start (adjust sleep time)
+      run: |
+        sleep 10
+      shell: bash
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      uses:  ./
+      with:
+        test-assembly-path: TestScenario/bin/Release/net6.0
+        test-assembly-dll: TestScenario.dll
+        output-html: TestScenario.html
+        framework: net6.0
+        

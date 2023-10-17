@@ -28,7 +28,7 @@ namespace TestScenario.StepDefinitions
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
-            driver.Url = "https://the-internet.herokuapp.com/add_remove_elements/";
+            driver.Url = "http://localhost:7080/add_remove_elements/";
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[@id='content']")));
         }
 
