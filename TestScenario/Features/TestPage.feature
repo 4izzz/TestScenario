@@ -1,6 +1,6 @@
 ﻿Feature: TestPage
 
-A short summary of the feature
+Add n elements to the page and verify that they're exist
 
 @testTag
 Scenario: Add n elements
